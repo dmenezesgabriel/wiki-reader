@@ -1,0 +1,272 @@
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f9fafb;
+  overflow-y: auto;
+}
+
+.loadingHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loadingHeader h2 {
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.repoName {
+  color: #6b7280;
+  font-family: monospace;
+  background: #f3f4f6;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.actionButtons {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.openWikiButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  max-width: 400px;
+}
+
+.openWikiButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.secondaryActions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.retryButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background: #5a67d8;
+}
+
+.backButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background: #4b5563;
+}
+
+.clearCacheButton {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.clearCacheButton:hover {
+  background: #dc2626;
+}
+
+.summary {
+  margin-top: 2rem;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+}
+
+.summary h3 {
+  color: #374151;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.notePreview h4 {
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.noteList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.noteItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.noteTitle {
+  font-weight: 500;
+  color: #374151;
+}
+
+.noteSlug {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: #6b7280;
+  background: #e5e7eb;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+}
+
+.noteMore {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.errorMessage {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  text-align: left;
+  max-width: 600px;
+  width: 100%;
+}
+
+.errorMessage h3 {
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+}
+
+.errorMessage pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #991b1b;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.repoInfo {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  max-width: 600px;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.repoInfo h3 {
+  margin-top: 0;
+  color: #374151;
+}
+
+.repoInfo p {
+  margin: 0.5rem 0;
+  color: #6b7280;
+}
+
+.repoInfo a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.repoInfo a:hover {
+  color: #1d4ed8;
+}
+
+@media (max-width: 768px) {
+  .loading {
+    padding: 1rem;
+  }
+
+  .summaryStats {
+    grid-template-columns: 1fr;
+  }
+
+  .secondaryActions {
+    flex-direction: column;
+  }
+
+  .noteItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
