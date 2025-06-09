@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
+  basePath: "/wiki-reader",
+  assetPrefix: "/wiki-reader/",
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -9,8 +11,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true
-  }
-}
+    unoptimized: true,
+  },
+};
 
-export default nextConfig
+export default nextConfig;
