@@ -1,6 +1,7 @@
 "use client"
 
 import type { RepoInfo } from "../types"
+import { Menu, X } from "lucide-react";
 import styles from "./Header.module.css"
 
 interface HeaderProps {
@@ -27,11 +28,7 @@ export default function Header({
       <div className={styles.container}>
         <div className={styles.leftSection}>
           <button onClick={onToggleSidebar} className={styles.hamburgerButton}>
-            <span className={`${styles.hamburger} ${sidebarOpen ? styles.open : ""}`}>
-              <span></span>
-              <span></span>
-              <span></span>
-            </span>
+            {sidebarOpen ? <X /> : <Menu />}
           </button>
           <div className={styles.brand}>
             <h1 className={styles.title}>📚 Dendron Wiki</h1>

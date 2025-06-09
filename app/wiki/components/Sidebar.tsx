@@ -190,21 +190,12 @@ export default function Sidebar({ notes, currentNote, onNoteSelect, collapsed, o
       <aside className={`${styles.sidebar} ${collapsed ? styles.collapsed : ""}`}>
         <div className={styles.header}>
           <div className={styles.titleSection}>
-            <button onClick={onToggle} className={styles.burgerMenu}>
-              <span className={styles.burgerLine}></span>
-              <span className={styles.burgerLine}></span>
-              <span className={styles.burgerLine}></span>
-            </button>
             <h2 className={styles.title}>File Explorer</h2>
           </div>
           <div className={styles.stats}>
             <span className={styles.noteCount}>{notes.length} notes</span>
           </div>
         </div>
-
-        <nav className={styles.nav}>
-          <div className={styles.treeContainer}>{treeStructure.children.map(renderTreeNode)}</div>
-        </nav>
 
         {/* Collapse/Expand All Controls */}
         <div className={styles.controls}>
@@ -228,6 +219,9 @@ export default function Sidebar({ notes, currentNote, onNoteSelect, collapsed, o
             📁 Collapse All
           </button>
         </div>
+        <nav className={styles.nav}>
+          <div className={styles.treeContainer}>{treeStructure.children.map(renderTreeNode)}</div>
+        </nav>
       </aside>
     </>
   )
