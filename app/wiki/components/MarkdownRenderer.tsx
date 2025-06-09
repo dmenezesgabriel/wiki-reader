@@ -2,6 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useMemo } from "react"
+import { formatDate } from "../lib/dateUtils" // Import formatDate
 import { MarkdownProcessor } from "../services/MarkdownProcessor"
 import type { DendronNote } from "../types"
 import styles from "./MarkdownRenderer.module.css"
@@ -142,6 +143,8 @@ export default function MarkdownRenderer({ note, notes, onNoteSelect }: Markdown
                         </span>
                       ))}
                     </div>
+                  ) : (key === "created" || key === "updated") && typeof value === "number" ? (
+                    formatDate(value)
                   ) : (
                     String(value)
                   )}
