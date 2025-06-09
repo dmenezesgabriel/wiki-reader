@@ -14,8 +14,17 @@ export class CacheService {
   private dbName = "dendron-wiki-cache"
   private dbVersion = 1
   private db: IDBDatabase | null = null
+  private isBrowser: boolean;
+
+  constructor() {
+    this.isBrowser = typeof window !== 'undefined' && typeof window.indexedDB !== 'undefined';
+  }
 
   async init(): Promise<void> {
+    if (!this.isBrowser) {
+      console.log("CacheService: Not in a browser environment, IndexedDB operations disabled.");
+      return Promise.resolve();
+    }
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, this.dbVersion)
 
@@ -49,6 +58,9 @@ export class CacheService {
   }
 
   async cacheFiles(files: any[], metadata: CacheMetadata): Promise<void> {
+    if (!this.isBrowser) {
+      return Promise.resolve();
+    }
     if (!this.db) {
       await this.init()
     }
@@ -87,6 +99,9 @@ export class CacheService {
   }
 
   async cacheNotes(notes: any[]): Promise<void> {
+    if (!this.isBrowser) {
+      return Promise.resolve();
+    }
     if (!this.db) {
       await this.init()
     }
@@ -119,6 +134,9 @@ export class CacheService {
 
   // Fix the getFiles method to properly retrieve files from cache
   async getFiles(source: "github" | "local", owner?: string, repo?: string): Promise<any[] | null> {
+    if (!this.isBrowser) {
+      return Promise.resolve(null);
+    }
     if (!this.db) {
       await this.init()
     }
@@ -187,6 +205,9 @@ export class CacheService {
   }
 
   async getNotes(): Promise<any[] | null> {
+    if (!this.isBrowser) {
+      return Promise.resolve(null);
+    }
     if (!this.db) {
       await this.init()
     }
@@ -214,6 +235,9 @@ export class CacheService {
   }
 
   async getCacheMetadata(source: "github" | "local", owner?: string, repo?: string): Promise<CacheMetadata | null> {
+    if (!this.isBrowser) {
+      return Promise.resolve(null);
+    }
     if (!this.db) {
       await this.init()
     }
@@ -242,6 +266,9 @@ export class CacheService {
   }
 
   async clearCache(): Promise<void> {
+    if (!this.isBrowser) {
+      return Promise.resolve();
+    }
     if (!this.db) {
       await this.init()
     }

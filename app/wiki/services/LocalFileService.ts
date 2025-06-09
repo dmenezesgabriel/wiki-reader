@@ -25,6 +25,21 @@ export class LocalFileService {
       { id: "process-files", name: "Processing markdown files", status: "pending" },
     ]
 
+    if (typeof window === 'undefined' || typeof window.showDirectoryPicker === 'undefined') {
+      console.log("LocalFileService: Not in a browser environment or File System Access API not supported. Returning demo files.");
+      // Update tasks to reflect this path
+      if (onProgress) {
+         tasks[0].status = "completed"; // Or "error" if preferred
+         tasks[0].message = "File System Access API not supported, using demo content.";
+         tasks[1].status = "completed";
+         tasks[1].message = "File reading skipped for demo.";
+         tasks[2].status = "completed";
+         tasks[2].message = "Demo content created.";
+         onProgress(tasks.map(task => ({...task, status: "completed"}))); // Mark all as completed or skipped
+      }
+      return Promise.resolve(this.createDemoFiles());
+    }
+
     const updateProgress = () => {
       onProgress?.(tasks)
     }

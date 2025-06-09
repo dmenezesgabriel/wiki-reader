@@ -497,9 +497,17 @@ export class GitHubService {
 
   private getGitHubToken(): string | null {
     try {
-      return localStorage.getItem("github-token")
+      // Prefer environment variable at build time or if available
+      if (typeof process !== 'undefined' && process.env && process.env.GITHUB_TOKEN) {
+        return process.env.GITHUB_TOKEN;
+      }
+      // Fallback to localStorage for client-side use
+      if (typeof localStorage !== 'undefined') {
+        return localStorage.getItem("github-token");
+      }
+      return null;
     } catch {
-      return null
+      return null;
     }
   }
 
