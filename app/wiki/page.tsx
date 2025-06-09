@@ -30,12 +30,14 @@ export default function WikiPage() {
       try {
         // Get repository info from localStorage
         const storedRepo = localStorage.getItem("dendron-repo")
-        if (!storedRepo) {
-          router.push("/")
-          return
+        let repo: RepoInfo;
+        if (typeof window === 'undefined' || !storedRepo) {
+          // Build-time or no stored repo, use a default for static generation
+          console.log("Using default repository for static build or no stored repo.");
+          repo = { owner: "dendronhq", repo: "dendron-site", source: "github", url: "https://github.com/dendronhq/dendron-site" };
+        } else {
+          repo = JSON.parse(storedRepo);
         }
-
-        const repo: RepoInfo = JSON.parse(storedRepo)
         setRepoInfo(repo)
 
         // Determine source and load files accordingly

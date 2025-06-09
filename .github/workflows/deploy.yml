@@ -1,0 +1,50 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or your default/production branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    concurrency: # Allow only one deployment at a time for this workflow
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM 📦
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8 # Specify your pnpm version if different
+          # No run_install: true here, will do it manually after Node setup
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Specify your Node.js version
+          cache: 'pnpm' # Enable caching for pnpm
+
+      - name: Install Dependencies 👨‍💻
+        run: pnpm install --frozen-lockfile
+
+      - name: Build 🏗️
+        env:
+          # If you have a GITHUB_TOKEN for accessing private repositories during build
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Example for configuring the default repo at build time (requires code changes to read these)
+          # NEXT_PUBLIC_GITHUB_REPO_OWNER: 'dendronhq'
+          # NEXT_PUBLIC_GITHUB_REPO_NAME: 'dendron-site'
+        run: pnpm run build # This script should be 'next build && next export'
+
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          # user_name: 'github-actions[bot]' # Optional: Custom commit user
+          # user_email: 'github-actions[bot]@users.noreply.github.com' # Optional: Custom commit email
+          # commit_message: 'Deploy to GitHub Pages' # Optional: Custom commit message
+          # cname: your.custom.domain.com # Optional: If you use a custom domain
